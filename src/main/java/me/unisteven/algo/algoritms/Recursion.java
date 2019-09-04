@@ -18,12 +18,9 @@ public class Recursion extends JFrame {
     }
 
     public void paint(Graphics g){
-
+        this.hTree(400, 200, g);
     }
 
-    public void hTree(Graphics g){
-
-    }
 
     // 7.1
     // non recusive function
@@ -76,11 +73,26 @@ public class Recursion extends JFrame {
 
     public String reverseString(String input){
         int length = input.length();
-        System.out.println(input);
         if(length == 0){
             return "";
         }
-        return reverseString(input.substring(0, length - 1));
+        return input.substring(length - 1) + reverseString(input.substring(0, length - 1));
+    }
+
+    public void hTree(int length, int height, Graphics g){
+        if(height < 20){
+            // end condition
+            return;
+        }
+        int startPosX = (WIDTH - length) / 2;
+        int startPosY = (HEIGHT - height) / 2;
+        int endPosX = length + startPosX;
+        int endPosY = height + startPosY;
+        int ycenter = ((endPosY - startPosY) / 2) + startPosY;
+        g.drawLine(startPosX, ycenter, endPosX, ycenter);
+        g.drawLine(startPosX, startPosY, startPosX, endPosY);
+        g.drawLine(endPosX, startPosY, endPosX, endPosY);
+        this.hTree(length / 2 , height / 2 , g);
     }
 
 }
