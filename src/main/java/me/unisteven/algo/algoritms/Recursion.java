@@ -18,7 +18,7 @@ public class Recursion extends JFrame {
     }
 
     public void paint(Graphics g){
-        this.hTree(400, 200, g);
+        this.hTree(10, 250, 250, false, g, 10);
     }
 
 
@@ -59,16 +59,10 @@ public class Recursion extends JFrame {
 
     // 7.23
     public int howManyOnesInTheBinairy(int n){
-        if(n < 2){
-            return n;
+        if(n == 0){
+            return 0;
         }
-        int ones = 0;
-        if(n % 2 != 0){
-            // it is odd
-            ones++;
-        }
-        ones += howManyOnesInTheBinairy(n / 2);
-        return ones;
+        return n % 2 == 0 ? howManyOnesInTheBinairy(n / 2) : howManyOnesInTheBinairy(n / 2) + 1;
     }
 
     public String reverseString(String input){
@@ -79,20 +73,38 @@ public class Recursion extends JFrame {
         return input.substring(length - 1) + reverseString(input.substring(0, length - 1));
     }
 
-    public void hTree(int length, int height, Graphics g){
-        if(height < 20){
+    public void hTree(int length, int x, int y, boolean tilted, Graphics g, int count){
+        if(count < 1){
             // end condition
             return;
         }
-        int startPosX = (WIDTH - length) / 2;
-        int startPosY = (HEIGHT - height) / 2;
-        int endPosX = length + startPosX;
-        int endPosY = height + startPosY;
-        int ycenter = ((endPosY - startPosY) / 2) + startPosY;
-        g.drawLine(startPosX, ycenter, endPosX, ycenter);
-        g.drawLine(startPosX, startPosY, startPosX, endPosY);
-        g.drawLine(endPosX, startPosY, endPosX, endPosY);
-        this.hTree(length / 2 , height / 2 , g);
+        int x1;
+        int y1;
+        int x2;
+        int y2;
+        if(tilted){
+            x1 = x - length;
+            x2 = x + length;
+            y1 = y;
+            y2 = y;
+        }else{
+            x1 = x;
+            x2 = x;
+            y1 = y - length;
+            y2 = y + length;
+        }
+        g.drawLine(x1 + (WIDTH / 2), (HEIGHT /2 ) - y1, x2 + (WIDTH / 2), (HEIGHT / 2) - y2);
+        this.hTree(length / 2, x1, y1, !tilted, g, count - 1);
+        this.hTree(length / 2, x2, y2, !tilted, g, count - 1);
     }
 
+    public void runAll() {
+        this.setup();
+        this.factorialNonRecusive(5);
+        System.out.println("total for 5 = " + this.factorialRecursive(5));
+        System.out.println("sum for a total of 5 is " + this.sumNonRecusive(5));
+        System.out.println("sum for a total of 5 recursive is " + this.sumRecusive(5));
+        System.out.println(this.howManyOnesInTheBinairy(7));
+        System.out.println("the reverse of Steven = " + this.reverseString("steven"));
+    }
 }
