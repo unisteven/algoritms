@@ -5,17 +5,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SortingTest {
 
     private List<SortArray> sortingmethods = new ArrayList<SortArray>();
+    private MergeSort mergeSort = new MergeSort();
 
     @Before
     public void setUp() throws Exception {
-        this.sortingmethods.add(new InsertionSort());
+//        this.sortingmethods.add(new InsertionSort());
         this.sortingmethods.add(new MergeSort());
-        this.sortingmethods.add(new QuickSort());
+//        this.sortingmethods.add(new QuickSort());
     }
 
     @Test
@@ -25,6 +27,13 @@ public class SortingTest {
         for(SortArray sortArray : this.sortingmethods){
             Assert.assertArrayEquals(sortArray.sortArray(input), expected);
         }
+    }
+
+    @Test
+    public void mergeTwoThingiesTogetheries(){
+        int[] input1 = {1,2,3,4,5};
+        int[] input2 = {6,7,8,9,10};
+        System.out.println(Arrays.toString(mergeSort.merge(input1, input2)));
     }
 
     @Test
