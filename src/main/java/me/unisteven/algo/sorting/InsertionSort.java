@@ -1,14 +1,14 @@
 package me.unisteven.algo.sorting;
 
-public class InsertionSort implements SortArray{
+public class InsertionSort<T extends Comparable<T>> implements SortArray<T>{
 
     @Override
-    public int[] sortArray(int[] input) {
+    public T[] sortArray(T[] input) {
         for(int i = 0; i < input.length; i++){
             for(int y = 0; y < input.length; y++){
-                if(input[y] > input[i]){
+                if(input[y].compareTo(input[i]) > 0){
                     // swap
-                    int replaceValue = input[i];
+                    T replaceValue = input[i];
                     input[i] = input[y];
                     input[y] = replaceValue;
                 }

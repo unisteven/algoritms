@@ -1,5 +1,5 @@
 package me.unisteven.algo.sorting;
 
-public interface SortArray {
-    int[] sortArray(int[] input);
+public interface SortArray<T extends Comparable<T>> {
+    T[] sortArray(T[] input);
 }

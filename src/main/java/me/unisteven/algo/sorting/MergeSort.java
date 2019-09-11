@@ -2,28 +2,30 @@ package me.unisteven.algo.sorting;
 
 import java.util.Arrays;
 
-public class MergeSort implements SortArray {
+public class MergeSort<T extends Comparable<T>>implements SortArray<T> {
+
     @Override
-    public int[] sortArray(int[] input) {
+    public T[] sortArray(T[] input) {
         if (input.length <= 1) {
             return input;
         }
         int half = input.length / 2;
-        int[] half1 = Arrays.copyOfRange(input, 0, half);
-        int[] half2 = Arrays.copyOfRange(input, half, input.length);
+        T[] half1 = Arrays.copyOfRange(input, 0, half);
+        T[] half2 = Arrays.copyOfRange(input, half, input.length);
         half1 = sortArray(half1);
         half2 = sortArray(half2);
 
         return merge(half1, half2);
     }
 
-    public int[] merge(int[] input1, int[] input2) {
-        int[] output = new int[input1.length + input2.length];
+    public T[] merge(T[] input1, T[] input2) {
+        T[] output = (T[]) new Comparable[input1.length + input2.length];
+//        T[] output;
         int i = 0, j = 0, k = 0;
 
         while (i<input1.length && j <input2.length)
         {
-            if (input1[i] < input2[j])
+            if (input1[i].compareTo(input2[j]) < 0)
                 output[k++] = input1[i++];
             else
                 output[k++] = input2[j++];

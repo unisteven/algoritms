@@ -27,9 +27,9 @@ public class Main{
         }
         System.out.println(Arrays.toString(notSorted));
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=");
-        System.out.println(Arrays.toString(insertionSort.sortArray(notSorted)));
-        System.out.println(Arrays.toString(mergeSort.sortArray(notSorted)));
-        System.out.println(Arrays.toString(quickSort.sortArray(notSorted)));
+//        System.out.println(Arrays.toString(insertionSort.sortArray(notSorted)));
+//        System.out.println(Arrays.toString(mergeSort.sortArray(notSorted)));
+//        System.out.println(Arrays.toString(quickSort.sortArray(notSorted)));
     }
 
 }
