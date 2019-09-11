@@ -20,7 +20,6 @@ public class MergeSort<T extends Comparable<T>>implements SortArray<T> {
 
     public T[] merge(T[] input1, T[] input2) {
         T[] output = (T[]) new Comparable[input1.length + input2.length];
-//        T[] output;
         int i = 0, j = 0, k = 0;
 
         while (i<input1.length && j <input2.length)
