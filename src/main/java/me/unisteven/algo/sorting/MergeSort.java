@@ -36,7 +36,6 @@ public class MergeSort implements SortArray {
         // Store remaining elements of second array
         while (j < input2.length)
             output[k++] = input2[j++];
-        System.out.println(Arrays.toString(output));
         return output;
     }
 
