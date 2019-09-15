@@ -5,18 +5,27 @@ import java.util.Arrays;
 
 public class StevensArrayList<T> {
     private T[] values;
+    private int currentIndex = 0;
+    private int length = 1;
 
     public void add(T value){
         if(values == null){
-            this.values = (T[]) Array.newInstance(value.getClass(), 0);
+            this.values = (T[]) Array.newInstance(value.getClass(), 1);
         }
-        T[] newList = (T[]) Array.newInstance(value.getClass(), values.length + 1);
+        if(this.currentIndex < this.length){
+            values[currentIndex] = value;
+            this.currentIndex++;
+            return;
+        }
+        T[] newList = (T[]) Array.newInstance(value.getClass(), values.length * 2);
+        this.length = newList.length;
         if(this.values.length > 0) {
             for (int i = 0; i < this.values.length; i++) {
                 newList[i] = values[i];
             }
         }
-        newList[values.length] = value;
+        newList[currentIndex] = value;
+        currentIndex++;
         this.values = newList;
     }
 
@@ -28,10 +37,4 @@ public class StevensArrayList<T> {
         this.values[index] = value;
     }
 
-    @Override
-    public String toString() {
-        return "StevensArrayList{" +
-                "values=" + Arrays.toString(values) +
-                '}';
-    }
 }
