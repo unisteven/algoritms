@@ -31,7 +31,7 @@ public class StackTest {
     public void getSize() {
         this.stack.push("test1");
         this.stack.push("test2");
-        Assert.assertEquals(2, this.stack.getSize());
+        Assert.assertEquals(2, this.stack.size());
     }
 
     @Test

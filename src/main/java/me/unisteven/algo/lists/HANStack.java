@@ -10,9 +10,6 @@ public class HANStack<T> {
     }
 
     public T pop(){
-        if(this.top == 0) {
-            return null;
-        }
         T value = (T) list.get(this.top);
         this.list.delete(this.top);
         this.top--;
@@ -28,7 +25,7 @@ public class HANStack<T> {
         return (T) this.list.get(this.top);
     }
 
-    public int getSize(){
+    public int size(){
         return this.top + 1; // add one to the index to get the size.
     }
 }
