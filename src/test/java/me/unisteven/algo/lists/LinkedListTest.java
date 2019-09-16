@@ -32,6 +32,7 @@ public class LinkedListTest {
         this.linkedList.addIem("test2");
         this.linkedList.addIem("test3");
         this.linkedList.insert(1, "test4");
+        System.out.println(this.linkedList);
         Assert.assertEquals("test4", this.linkedList.get(1));
         Assert.assertEquals("test3", this.linkedList.get(3)); // the array is now moved a bit so there should be a new entry in the last.
 

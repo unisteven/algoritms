@@ -18,7 +18,6 @@ public class HanLinkedList<T> {
         HanListNode newNode = new HanListNode();
         newNode.setValue(value);
         node.setNext(newNode);
-        System.out.println(this.headerNode);
     }
 
     public void removeFirst(){
@@ -62,4 +61,16 @@ public class HanLinkedList<T> {
         return (T) node.getValue();
     }
 
+    @Override
+    public String toString() {
+        String values = "";
+        HanListNode node = this.headerNode.getNext();
+        while(node != null){
+            values += node.getValue() + ",";
+            node = node.getNext();
+        }
+        return "HanLinkedList{" +
+                "values=[" + values + "]" +
+                '}';
+    }
 }

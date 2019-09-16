@@ -37,4 +37,17 @@ public class StevensArrayList<T> {
         this.values[index] = value;
     }
 
+    @Override
+    public String toString() {
+        String values = "";
+        for(T val : this.values) {
+            if(val != null){
+                values += val.toString() + ",";
+            }
+        }
+        return "StevensArrayList{" +
+                "values= [" + values + "]" +
+                "length=" + length +
+                '}';
+    }
 }

@@ -22,6 +22,7 @@ public class StevensList {
         stevensArrayList.add(1);
         stevensArrayList.add(0);
         stevensArrayList.add(10);
+        System.out.println(stevensArrayList);
         Assert.assertEquals((int)stevensArrayList.get(0), 1);
     }
 

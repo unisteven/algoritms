@@ -28,4 +28,11 @@ public class HANStack<T> {
     public int size(){
         return this.top + 1; // add one to the index to get the size.
     }
+
+    @Override
+    public String toString() {
+        return "HANStack{" +
+                "list=" + list +
+                '}';
+    }
 }
