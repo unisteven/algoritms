@@ -21,7 +21,11 @@ public class HanLinkedList<T> {
     }
 
     public void removeFirst(){
-
+        if(this.headerNode.getNext() == null){
+            return;
+        }
+        HanListNode nextNode = this.headerNode.getNext().getNext();
+        this.headerNode.setNext(nextNode);
     }
 
     public void insert(int index, T value){
@@ -54,6 +58,9 @@ public class HanLinkedList<T> {
     }
 
     public T get(int index){
+        if(this.headerNode.getNext() == null){
+            return null;
+        }
         HanListNode node = this.headerNode.getNext();
         for (int i = 0; i < index ; i++) {
             node = node.getNext();

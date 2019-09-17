@@ -39,6 +39,21 @@ public class LinkedListTest {
     }
 
     @Test
+    public void removeFirst() {
+        this.linkedList.addIem("test1");
+        this.linkedList.addIem("test2");
+        this.linkedList.addIem("test3");
+        this.linkedList.removeFirst();
+        Assert.assertEquals("test2", this.linkedList.get(0));
+    }
+
+    @Test
+    public void removeFirstWithEmpty() {
+        this.linkedList.removeFirst();
+        Assert.assertEquals(null, this.linkedList.get(0));
+    }
+
+    @Test
     public void deleteElement() {
         this.linkedList.addIem("test");
         this.linkedList.addIem("test2");

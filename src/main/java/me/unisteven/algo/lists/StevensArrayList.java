@@ -20,9 +20,7 @@ public class StevensArrayList<T> {
         T[] newList = (T[]) Array.newInstance(value.getClass(), values.length * 2);
         this.length = newList.length;
         if(this.values.length > 0) {
-            for (int i = 0; i < this.values.length; i++) {
-                newList[i] = values[i];
-            }
+            System.arraycopy(values, 0, newList, 0, this.values.length);
         }
         newList[currentIndex] = value;
         currentIndex++;
