@@ -1,6 +1,6 @@
 package me.unisteven.algo.lists;
 
-public class HanLinkedList<T> {
+public class HanLinkedList<T>{
     private HanListNode headerNode = new HanListNode();
 
     public void addFirst(T value){
@@ -41,12 +41,6 @@ public class HanLinkedList<T> {
     }
 
     public void delete(int index){
-        if(index == 0){
-            // first element
-            HanListNode secondElement = this.headerNode.getNext();
-            this.headerNode.setNext(secondElement.getNext());
-            return;
-        }
         HanListNode node = this.headerNode;
         HanListNode previous = this.headerNode;
         for (int i = 0; i < (index + 1); i++) {
@@ -79,5 +73,15 @@ public class HanLinkedList<T> {
         return "HanLinkedList{" +
                 "values=[" + values + "]" +
                 '}';
+    }
+
+    public int size() {
+        int size = 0;
+        HanListNode node = this.headerNode;
+        while (node.getNext() != null){
+            size++;
+            node = node.getNext();
+        }
+        return size;
     }
 }

@@ -2,8 +2,6 @@ package me.unisteven.algo.lists;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
-
 public class StevensQueue<T> {
 
     private List list;
@@ -23,7 +21,7 @@ public class StevensQueue<T> {
     }
 
 
-
-
-
+    public boolean isEmpty() {
+        return this.list.isEmpty();
+    }
 }
