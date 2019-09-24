@@ -61,8 +61,22 @@ public class PathTest {
         this.pathAlgorithm.solve(this.graph, "point1", "point5");
         System.out.println(graph);
         String path = this.pathAlgorithm.toString();
-        Assert.assertEquals("point2 => ", path); // it is reversed
+        Assert.assertEquals("point5 => point6 => point1 => ", path); // it is reversed
     }
 
+    @Test
+    public void isConnected() {
+        this.pathAlgorithm = new Dijkstra();
+        this.pathAlgorithm.solve(this.graph, "point1", "point5");
+        Assert.assertTrue(this.graph.isConnected());
+    }
 
+    @Test
+    public void graphShouldNotBeConnected() {
+        this.pathAlgorithm = new Dijkstra();
+        this.pathAlgorithm.solve(this.graph, "point1", "point7");
+        System.out.println(this.graph);
+        Vertex v7 = this.graph.getVertex("point7");
+        Assert.assertFalse(this.graph.isConnected());
+    }
 }

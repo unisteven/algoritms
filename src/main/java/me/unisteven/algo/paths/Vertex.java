@@ -5,7 +5,7 @@ import me.unisteven.algo.lists.HanLinkedList;
 public class Vertex {
     private String name;
     private HanLinkedList<Edge> adj; // Adjacent edges
-    private boolean seen;
+    private boolean seen = false;
 
     // The following attributes are needed for the algorithm
     private double dist; // Cost

@@ -24,7 +24,7 @@ public class Dijkstra extends PathAlgorithm {
         while (!priorityQueue.isEmpty() && nodeSeen < graph.getVertexMap().size()) {
             Path p = (Path) priorityQueue.poll();
             Vertex v = p.vertex;
-            if (!v.isSeen()) {
+            if (v.isSeen()) {
                 continue;
             }
             v.setSeen(true);
@@ -34,7 +34,7 @@ public class Dijkstra extends PathAlgorithm {
             for (int i = 0; i < v.getAdj().size(); i++) {
                 edge = v.getAdj().get(i);
                 Vertex w = edge.getDest();
-                double cost = w.getDist();
+                double cost = edge.getCost();
                 if (cost < 0) {
                     return false; // error
                 }
