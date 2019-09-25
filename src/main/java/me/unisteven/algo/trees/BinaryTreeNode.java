@@ -31,9 +31,23 @@ public class BinaryTreeNode<T> {
         return count;
     }
 
-    // TODO create post order, preorder and inorder print function.
+    public void printPreOrder() {
+        System.out.println(value);
+        if (left != null) left.printPreOrder();
+        if (right != null) right.printPreOrder();
+    }
 
-    // TODO create Tree interface or abstract class.
+    public void printPostOrder() {
+        if (left != null) left.printPostOrder();
+        if (right != null) right.printPostOrder();
+        System.out.println(value);
+    }
+
+    public void printInOrder() {
+        if (left != null) left.printInOrder();
+        System.out.println(value);
+        if (right != null) right.printInOrder();
+    }
 
 
 }
