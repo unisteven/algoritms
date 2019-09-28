@@ -15,6 +15,6 @@ public class SyntaxCheckerTest {
 
     @Test
     public void testCorrecTSyntax() {
-        Assert.assertTrue(this.readFile.checkFile("{[]}"));
+        Assert.assertTrue(this.readFile.checkFile("if(test){set[]}"));
     }
 }

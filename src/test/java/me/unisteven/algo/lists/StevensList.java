@@ -14,7 +14,6 @@ public class StevensList {
     @Before
     public void setUp() throws Exception {
         stevensArrayList = new StevensArrayList<Integer>();
-        LinkedList<String> arrayList = new LinkedList<String>();
     }
 
     @Test

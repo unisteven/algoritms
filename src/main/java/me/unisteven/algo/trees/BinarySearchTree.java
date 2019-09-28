@@ -1,5 +1,7 @@
 package me.unisteven.algo.trees;
 
+import jdk.nashorn.internal.ir.BinaryNode;
+
 public class BinarySearchTree {
     public BinaryTreeNode root;
 
@@ -31,12 +33,16 @@ public class BinarySearchTree {
     }
 
     public void remove(int value) {
-        BinaryTreeNode node = this.remove(value, this.root);
-    }
+        BinaryTreeNode toRemove = this.find(this.root, value);
+        BinaryTreeNode minOfRight = this.findMinBin(toRemove.right);
+        toRemove.value = minOfRight.value; // replace with lowest of right
 
-    // TODO HOW You do this????
-    private BinaryTreeNode remove(int value, BinaryTreeNode node){
-        return null;
+        if(minOfRight.right != null){
+            // set the parent left to this minOfRight.right
+            // TODO how to get the parent????????????
+        }else{
+            // set parent left to null.
+        }
     }
 
     public int findMin(BinaryTreeNode node) {
@@ -44,6 +50,13 @@ public class BinarySearchTree {
             return (int) node.value;
         }
         return findMin(node.left);
+    }
+
+    private BinaryTreeNode findMinBin(BinaryTreeNode node) {
+        if (node.left == null) {
+            return node;
+        }
+        return findMinBin(node.left);
     }
 
     public int findMax(BinaryTreeNode node) {

@@ -6,11 +6,11 @@ import org.junit.Test;
 
 public class TreeTest {
 
-    private FirstChildNextSiblingTreeNode<String> root;
+    private Tree<String> tree;
 
     @Before
     public void setUp() {
-        this.root = new FirstChildNextSiblingTreeNode<>("1");
+        this.tree = new Tree<>("1");
     }
 
     @Test
@@ -20,10 +20,10 @@ public class TreeTest {
         FirstChildNextSiblingTreeNode<String> secondChildChild = new FirstChildNextSiblingTreeNode<>("2-2");
         FirstChildNextSiblingTreeNode<String> third = new FirstChildNextSiblingTreeNode<>("3");
         FirstChildNextSiblingTreeNode<String> thirdChild = new FirstChildNextSiblingTreeNode<>("3-1");
-        this.root.addChild(second);
+        this.tree.addChild(second);
         second.addChild(secondChild);
         second.addChild(secondChildChild);
-        root.addChild(third);
+        this.tree.addChild(third);
         third.addChild(thirdChild);
     }
 
@@ -44,12 +44,6 @@ public class TreeTest {
      */
     @Test
     public void binaryTreeCalculate() {
-//        BinaryTree<String> tree = new BinaryTree<>(new BinaryTreeNode<String>("*"));
-//        tree.root.left = new BinaryTreeNode<>("*");
-//        tree.root.right = new BinaryTreeNode<>("3");
-//        tree.root.left.left = new BinaryTreeNode<>("1");
-//        tree.root.left.right = new BinaryTreeNode<>("2");
-//        tree.root.printInOrder();
         BinaryTree<String> tree = new BinaryTree<>(new BinaryTreeNode<String>("+"));
         BinaryTreeNode<String> mult2 = new BinaryTreeNode<>("*");
         BinaryTreeNode<String> mn1 = new BinaryTreeNode<>("4");

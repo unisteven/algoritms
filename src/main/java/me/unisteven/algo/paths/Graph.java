@@ -30,7 +30,7 @@ public class Graph {
                 return false; // as soon as one of the values is infinite it means the graph is not fully connected.
             }
         }
-        return true; // is isn't false so it must be true.
+        return true; // it isn't false so it must be true.
     }
 
     @Override

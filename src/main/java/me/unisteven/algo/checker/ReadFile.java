@@ -4,7 +4,6 @@ import me.unisteven.algo.lists.HANStack;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
 
 public class ReadFile {
 
@@ -22,6 +21,11 @@ public class ReadFile {
     public boolean checkFile(String input) {
         char[] chars = input.toCharArray();
         for(char c : chars){
+            // check if it is one of symbols
+            if(!(this.corrospondingSymbols.containsKey(c) || this.corrospondingSymbols.containsValue(c))){
+                // it is not a symbol so skip
+                continue;
+            }
             if(isOpeningSymbol(c)){
                 // push on stack
                 this.stack.push(c);
