@@ -33,6 +33,10 @@ public class FirstChildNextSiblingTreeNode<T> {
 
 
     public void removeChild(FirstChildNextSiblingTreeNode<T> t){
-
+        if(t.firstChild != null){
+            t.firstChild = t.firstChild.nextSibling;
+        }else{
+            t.firstChild = null;
+        }
     }
 }

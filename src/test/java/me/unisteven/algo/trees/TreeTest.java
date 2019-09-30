@@ -59,6 +59,21 @@ public class TreeTest {
     }
 
     @Test
+    public void removeChild() {
+        FirstChildNextSiblingTreeNode<String> second = new FirstChildNextSiblingTreeNode<>("2");
+        FirstChildNextSiblingTreeNode<String> secondChild = new FirstChildNextSiblingTreeNode<>("2-1");
+        FirstChildNextSiblingTreeNode<String> secondChildChild = new FirstChildNextSiblingTreeNode<>("2-2");
+        FirstChildNextSiblingTreeNode<String> third = new FirstChildNextSiblingTreeNode<>("3");
+        FirstChildNextSiblingTreeNode<String> thirdChild = new FirstChildNextSiblingTreeNode<>("3-1");
+        this.tree.addChild(second);
+        second.addChild(secondChild);
+        second.addChild(secondChildChild);
+        this.tree.addChild(third);
+        third.addChild(thirdChild);
+        second.removeChild(second); // all childs will be removed
+    }
+
+    @Test
     public void calculateNumberOfLeaves() {
         BinaryTree<String> tree = new BinaryTree<>(new BinaryTreeNode<String>("+"));
         BinaryTreeNode<String> mult2 = new BinaryTreeNode<>("*");

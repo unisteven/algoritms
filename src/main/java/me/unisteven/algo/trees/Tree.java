@@ -10,4 +10,7 @@ public class Tree<T> {
     public void addChild(FirstChildNextSiblingTreeNode<T> second) {
         this.root.addChild(second);
     }
+
+
+
 }
