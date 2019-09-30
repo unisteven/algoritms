@@ -1,104 +1,133 @@
 package me.unisteven.algo.trees;
 
-import jdk.nashorn.internal.ir.BinaryNode;
 
-public class BinarySearchTree {
-    public BinaryTreeNode root;
+public class BinarySearchTree<T extends Comparable<? super T>> {
+    private BinaryTreeNode<T> root;
 
-    public BinarySearchTree(int first) {
-        this.root = new BinaryTreeNode(first);
+    public BinarySearchTree(T value) {
+        root = new BinaryTreeNode<>(value);
     }
 
-    public void insert(int value) {
-        this.insert(value, root);
+    public void insert(T element) {
+        root = insert(element, root);
     }
 
-    private void insert(int value, BinaryTreeNode node) {
-        if (value < (int) node.value) {
-            // left
-            if (node.left == null) {
-                node.left = new BinaryTreeNode(value);
-            } else {
-                // recursive
-                this.insert(value, node.left);
-            }
-        } else {
-            if(node.right == null){
-                // no value zo must be bigger
-                node.right = new BinaryTreeNode(value);
-            }else{
-                this.insert(value, node.right);
-            }
-        }
+    public void remove(T element) {
+        root = remove(element, root);
     }
 
-    public void remove(int value) {
-        BinaryTreeNode toRemove = this.find(this.root, value);
-        BinaryTreeNode minOfRight = this.findMinBin(toRemove.right);
-        toRemove.value = minOfRight.value; // replace with lowest of right
-
-        if(minOfRight.right != null){
-            // set the parent left to this minOfRight.right
-            // TODO how to get the parent????????????
-        }else{
-            // set parent left to null.
-        }
+    public void removeMin() {
+        root = removeMin(root);
     }
 
-    public int findMin(BinaryTreeNode node) {
-        if (node.left == null) {
-            return (int) node.value;
-        }
-        return findMin(node.left);
+    public T findMin() {
+        return elementAt(findMin(root));
     }
 
-    private BinaryTreeNode findMinBin(BinaryTreeNode node) {
-        if (node.left == null) {
-            return node;
-        }
-        return findMinBin(node.left);
+    public T findMax() {
+        return elementAt(findMax(root));
     }
 
-    public int findMax(BinaryTreeNode node) {
-        if (node.right == null) {
-            return (int) node.value;
-        }
-        return findMax(node.right);
+    public T find(T element) {
+        return elementAt(find(element, root));
     }
 
-    public int find(int value){
-        BinaryTreeNode node = this.find(this.root, value);
-        if(node == null){
-            return 0;
-        }else{
-            return (int) node.value;
-        }
+    public void makeEmpty() {
+        root = null;
     }
 
-    private BinaryTreeNode find(BinaryTreeNode node, int value) {
-        if((int) node.value == value){
-            return node;
-        }
-        if (node.left != null) {
-            if (value < (int) node.value) {
-                return find(node.left, value);
-            }else{
-                if (node.right == null) {
-                    return null;
-                }
-                return find(node.right, value);
-            }
-        }
-        if (node.right != null) {
-            if (value > (int) node.value) {
-                return find(node.right, value);
-            }else{
-                if(node.left == null){
-                    return null;
-                }
-                return find(node.left, value);
-            }
-        }
+    public boolean isEmpty() {
+        return root == null;
+    }
+
+    private T elementAt(BinaryTreeNode<T> t) {
+        return t == null ? null : t.getValue();
+    }
+
+    private BinaryTreeNode<T> find(T element, BinaryTreeNode<T> t) {
+        if (element == t.getValue()) return t;
+
+        if (element.compareTo(t.getValue()) < 0) return find(element, t.getLeft());
+        if (element.compareTo(t.getValue()) > 0) return find(element, t.getRight());
+
         return null;
+    }
+
+    protected BinaryTreeNode<T> findMin(BinaryTreeNode<T> t) {
+
+        if (t.getLeft() != null) return findMin(t.getLeft());
+
+        return t;
+    }
+
+    protected BinaryTreeNode<T> findMax(BinaryTreeNode<T> t) {
+
+        if (t.getRight() != null) return findMax(t.getRight());
+
+        return t;
+    }
+
+    protected BinaryTreeNode<T> insert(T element, BinaryTreeNode<T> t) {
+        if (t == null) {
+            t = new BinaryTreeNode<>(element);
+        } else if (element.compareTo(t.getValue()) < 0) {
+            t.setLeft(insert(element, t.getLeft()));
+        } else if (element.compareTo(t.getValue()) > 0) {
+            t.setRight(insert(element, t.getRight()));
+        } else {
+            return null; // this is an error
+        }
+
+        return t;
+    }
+
+    protected BinaryTreeNode<T> removeMin(BinaryTreeNode<T> t) {
+        if (t == null) {
+            throw new IllegalArgumentException();
+        } else if (t.getLeft() == null) {
+            t.setLeft(removeMin(t.getLeft()));
+            return t;
+        } else {
+            return t.getRight();
+        }
+    }
+
+    protected BinaryTreeNode<T> removeMax(BinaryTreeNode<T> t) {
+        if (t == null) {
+            throw new IllegalArgumentException();
+        } else if (t.getRight() == null) {
+            t.setRight(removeMax(t.getRight()));
+            return t;
+        } else {
+            return t.getLeft();
+        }
+    }
+
+    protected BinaryTreeNode<T> remove(T element, BinaryTreeNode<T> t) {
+        if (t == null) {
+            throw new IllegalArgumentException();
+        } else if (element.compareTo(t.getValue()) < 0) {
+            t.setLeft(remove(element, t.getLeft()));
+        } else if (element.compareTo(t.getValue()) > 0) {
+            t.setRight(remove(element, t.getRight()));
+        } else if (t.getLeft() != null && t.getRight() != null) {
+            t.setValue(findMin(t.getRight()).getValue());
+            t.setRight(removeMin(t.getRight()));
+        } else {
+            t = (t.getLeft() != null) ? t.getLeft() : t.getRight();
+        }
+
+        return t;
+    }
+
+    public BinaryTreeNode<T> getRoot() {
+        return root;
+    }
+
+    @Override
+    public String toString() {
+        return "BinarySearchTree{" +
+                "root=" + root +
+                '}';
     }
 }

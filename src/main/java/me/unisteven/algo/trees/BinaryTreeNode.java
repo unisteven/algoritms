@@ -17,6 +17,22 @@ public class BinaryTreeNode<T> {
         this.right = right;
     }
 
+    public BinaryTreeNode<T> getLeft() {
+        return left;
+    }
+
+    public BinaryTreeNode<T> getRight() {
+        return right;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
     public int getNumberOfLeaves(BinaryTreeNode<T> t){
         if(t.left == null && t.right == null){
             return 1;
